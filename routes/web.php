@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Master\AdminController;
+use App\Http\Controllers\Master\SettingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     // MASTER PANEL
     Route::middleware(['role:Master'])->name('master.')->prefix('master')->group(function(){
         Route::get('/', [AdminController::class, 'index'])->name('index');
+
+        Route::resource('/settings', SettingController::class);
     });
 });
 
